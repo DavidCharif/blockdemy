@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/blockdemy/static/js/main.5e5927ca.js",
+    "index.html": "/blockdemy/index.html",
+    "main.5e5927ca.js.map": "/blockdemy/static/js/main.5e5927ca.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.5e5927ca.js"
+  ]
+}
