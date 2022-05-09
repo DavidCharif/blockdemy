@@ -1,14 +1,16 @@
-import Main from "./Containers/Main";
+import { BrowserRouter } from "react-router-dom";
+
+import LocalRoutes from "./Helpers/Routes";
 import { GoblalStyle } from "./Styled/GoblalStyle";
 
 function App() {
-  return( 
+  return (
     <>
-    <GoblalStyle/>
-  <Main />
-  </>
-
-  
+      <GoblalStyle />
+      <BrowserRouter>
+        <LocalRoutes/>
+      </BrowserRouter>
+    </>
   );
 }
 

@@ -1,72 +1,108 @@
-import { DetailStyled, ButtonGenerateStyled, InnerDetailStyled, H5, H6, InnerDetailContainer } from "../Styled/DetailStyled";
+import Spinner from "../Helpers/Spinner";
+import { graphql } from '@apollo/client/react/hoc';
 
-const Detail = ({ dataApi, handle }) => {
-  return (
-  
-      <DetailStyled>
-        {dataApi ? (
-          <div className="container">
-            <div className="imageContainer">
-              <img src={dataApi.image} alt={dataApi.name}></img>
-            </div>
+import {
+  DetailStyled,
+  ButtonGenerateStyled,
+  InnerDetailStyled,
+  H5,
+  H6,
+  InnerDetailContainer,
+  EmptyData
+} from "../Styled/DetailStyled";
+import { GET_CHARACTER } from "../Querys/GET_CHARACTER";
+import { useState } from "react";
+
+function InnerDetail({data: {character}}) {
+  return(
+    <div className="container">
+          <div className="imageContainer">
+            <img src={character.image} alt={character.name}></img>
+          </div>
+          <div className="infoContainer">
             <div className="detailContainer">
               <div className="nameContainer">
-                <H5>{dataApi.name}</H5>
-                <H6>Character id: {dataApi.id}</H6>
+                <H5>{character.name}</H5>
+                <H6>Character id: {character.id}</H6>
               </div>
               <InnerDetailContainer>
-              <InnerDetailStyled>
-                <span>Status:</span>
-                {dataApi.status}
-              </InnerDetailStyled>
-              <hr />
-              <InnerDetailStyled>
-                <span>Species:</span>
-                {dataApi.species}
-              </InnerDetailStyled>
-              <hr />
-              <InnerDetailStyled>
-                <span>Type:</span>
-                {dataApi.type ? dataApi.type : "unknown"}
-              </InnerDetailStyled>
-              <hr />
-              <InnerDetailStyled>
-                <span>Gender:</span>
-                {dataApi.gender}
-              </InnerDetailStyled>
-              <hr />
-              <InnerDetailStyled>
-                <span>Origin:</span>
-                {dataApi.origin.name}
-              </InnerDetailStyled>
-              <hr />
-              <InnerDetailStyled>
-                <span>Location:</span>
-                {dataApi.location.name}
-              </InnerDetailStyled>
-              <hr />
-              <InnerDetailStyled>
-                <span>Created at:</span>
-                {new Date(dataApi.created)
-                  .toString()
-                  .split(" ")
-                  .slice(0, 4)
-                  .join(" ")}
-              </InnerDetailStyled>
-              <hr />
+                <InnerDetailStyled>
+                  <span>Status:</span>
+                  {character.status}
+                </InnerDetailStyled>
+                <hr />
+                <InnerDetailStyled>
+                  <span>Species:</span>
+                  {character.species}
+                </InnerDetailStyled>
+                <hr />
+                <InnerDetailStyled>
+                  <span>Type:</span>
+                  {character.type ? character.type : "unknown"}
+                </InnerDetailStyled>
+                <hr />
+                <InnerDetailStyled>
+                  <span>Gender:</span>
+                  {character.gender}
+                </InnerDetailStyled>
+                <hr />
+                <InnerDetailStyled>
+                  <span>Origin:</span>
+                  {character.origin.name}
+                </InnerDetailStyled>
+                <hr />
+                <InnerDetailStyled>
+                  <span>Location:</span>
+                  {character.location.name}
+                </InnerDetailStyled>
+                <hr />
+                <InnerDetailStyled>
+                  <span>Created at:</span>
+                  {new Date(character.created)
+                    .toString()
+                    .split(" ")
+                    .slice(0, 4)
+                    .join(" ")}
+                </InnerDetailStyled>
+                <hr />
               </InnerDetailContainer>
             </div>
           </div>
-        ) : (
-          <h1>No se ha cargado ningún personaje</h1>
-        )}
-      
-      <ButtonGenerateStyled type="button" onClick={() => handle()}>
-        Generar
-      </ButtonGenerateStyled>
-      </DetailStyled>
-   
+        </div>
+  )
+}
+
+
+const Detail = ({ idApi, handle, loading }) => {
+  const [data, setData] = useState(false);
+  
+  const HOCComponet = graphql(GET_CHARACTER, {
+    options: {
+      variables: {
+        id: idApi
+      }
+    }        
+  })(InnerDetail);
+
+  return (
+    <DetailStyled>
+      {data ? (
+        <HOCComponet/>
+      ) : (
+        <EmptyData>
+        No se ha cargado ningún personaje
+        </EmptyData>
+      )}
+
+      {loading ? (
+        <Spinner />
+      ) : (
+        <ButtonGenerateStyled type="button" onClick={() => handle()}>
+          Generate
+        </ButtonGenerateStyled>
+      )}
+    </DetailStyled>
   );
 };
 
-export default Detail;
+export default Detail

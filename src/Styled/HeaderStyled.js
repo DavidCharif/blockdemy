@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HeaderStyled = styled.header`
+export const HeaderStyled = styled.nav`
   background-color: rgb(31, 38, 45);
   position: fixed;
   top: 0;

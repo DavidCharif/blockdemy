@@ -4,7 +4,11 @@ export const DetailStyled = styled.div`
   .container {
     display: flex;
     flex-direction: row;
-
+    .infoContainer{    display: flex;
+    flex-direction: column;
+    flex-basis: 60%;
+    margin-right: 20px;
+    }
     .imageContainer {
       display: flex;
       flex-direction: column;
@@ -17,9 +21,7 @@ export const DetailStyled = styled.div`
       }
     }
     .detailContainer {
-      display: flex;
-      flex-basis: 60%;
-      flex-direction: column;
+     
       background-color: rgb(255, 255, 255);
       box-shadow: rgb(136 152 170 / 15%) 0px 0px 2rem 0px;
       transition: all 0.5s ease 0s;
@@ -103,3 +105,12 @@ export const H6 = styled.h6`
   font-weight: 600;
   color: rgb(111, 115, 122);
 `;
+
+export const EmptyData = styled.div`
+  width: 100%;
+    padding: 80px;
+    font-size: 30px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+`

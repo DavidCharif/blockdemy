@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 export const HistoryStyled = styled.div`
   text-align: center;
+`;
+
+export const HistoryInnerContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  
-  `;
+  gap: 30px;
+`;
 export const HistoryListStyled = styled.div`
-  
   display: flex;
   flex-direction: row;
   div {
@@ -18,8 +19,7 @@ export const HistoryListStyled = styled.div`
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    span{
-
+    span {
       font-size: 22px;
     }
   }
@@ -50,5 +50,4 @@ export const ButtonHistory = styled.button`
     background-color: rgb(130, 101, 252);
     color: white;
   }
-  
 `;
