@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -9,14 +10,17 @@ import {
   HistoryStyled,
 } from "../Styled/HistoryStyled";
 
-const History = ({ history, setData }) => {
+const History = ({  setData, on }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const history = useSelector((state) => state.history);
   const navigate = useNavigate()
   const handleRandomCharacter = (data) => {
     setData(data);
+    console.log('setiando data')
     let main = document.querySelector("main");
     main.scrollIntoView();
     navigate(`/${data.name}`);
+    on(false)
   };
   const handleOpen = () => {
     setIsOpen(!isOpen);
