@@ -1,13 +1,19 @@
 import styled from "styled-components";
 
 export const HistoryStyled = styled.div`
-  text-align: center;
+  margin-top: 150px;
 `;
 
 export const HistoryInnerContainer = styled.div`
-  display: flex;
+position: absolute;
+top: 60px;
+right:120px;  
+  display: none;
+  background-color: #fafafa;
   flex-direction: column;
-  gap: 30px;
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 export const HistoryListStyled = styled.div`
   display: flex;

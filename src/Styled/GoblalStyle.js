@@ -6,4 +6,7 @@ export const GoblalStyle = createGlobalStyle`
     font-family: "Play", sans-serif;
     scroll-behavior: smooth;
   }
+  body {
+    background-color: ${({ theme }) => theme.background};
+  }
 `

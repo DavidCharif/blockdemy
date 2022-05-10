@@ -3,17 +3,34 @@ import ReactDOM from "react-dom/client";
 
 import App from "./App";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { Provider, useSelector } from "react-redux";
+
+import { configureStore } from "@reduxjs/toolkit";
+
+import counterReducer from "./Helpers/historySlice";
+import themeReducer from "./Helpers/themeSlice";
+
+
 
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql",
   cache: new InMemoryCache(),
 });
-
+export const store = configureStore({
+  reducer: {
+    history: counterReducer,
+    theme: themeReducer,
+  },
+});
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
+    <Provider store={store}>
+          
       <App />
+      
+        </Provider>
     </ApolloProvider>
   </React.StrictMode>
 );

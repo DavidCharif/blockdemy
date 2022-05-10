@@ -11,23 +11,26 @@ import { add } from "./historySlice";
 
 import Spinner from "./Spinner";
 
-function InnerDetail({ data }) {
-  
+function InnerDetail({ data }) {  
   const character = data.character?? data;
   const history = useSelector((state) => state.history);
   const dispatch = useDispatch();
-  console.log('history', history)
+
+  useEffect(() => {
+    if(!data.loading){
+    if (!history.includes(character)) {
+      dispatch(add(character));
+    }}},[character])
 
   if (data.loading) {
     return <Spinner />;
-  } else {
-    if(!history.includes(character)){
-      dispatch(add(character))
-    }
-  }
+  } 
   if (data.error) {
     return <div>Error</div>;
   } 
+
+  let status = character.status
+  
   return (
     <div className="container">
       <div className="imageContainer">
@@ -36,7 +39,7 @@ function InnerDetail({ data }) {
       <div className="infoContainer">
         <div className="detailContainer">
           <div className="nameContainer">
-            <H5>{character.name}</H5>
+            <H5 status={status}>{character.name}</H5>
             <H6>Character id: {character.id}</H6>
           </div>
           <InnerDetailContainer>

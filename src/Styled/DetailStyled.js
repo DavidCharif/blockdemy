@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "./Theme";
 
 export const DetailStyled = styled.div`
   .container {
@@ -22,17 +23,18 @@ export const DetailStyled = styled.div`
     }
     .detailContainer {
      
-      background-color: rgb(255, 255, 255);
+      background-color: ${({ theme }) => theme.background};
       box-shadow: rgb(136 152 170 / 15%) 0px 0px 2rem 0px;
       transition: all 0.5s ease 0s;
       border-radius: 0.3rem;
       border-bottom: none;
+      color: ${({ theme }) => theme.color};
       .nameContainer {
         border-bottom: 1px solid rgb(236, 237, 239);
         padding: 0.75rem 1.25rem;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-        background-color: rgb(255, 255, 255);
+      
       }
     }
     @media (max-width: 48em) {
@@ -92,10 +94,11 @@ export const InnerDetailContainer = styled.div`
 `;
 
 export const H5 = styled.h5`
+
   font-size: 20px;
   font-weight: 600;
   margin: 10px 0px;
-  color: rgb(31, 38, 45);
+  color: ${(props) => props.status === 'Dead' ? "rgb(255, 0, 0)" : "green"};
 `;
 
 export const H6 = styled.h6`
@@ -103,7 +106,7 @@ export const H6 = styled.h6`
   text-transform: uppercase;
   margin: 4px 0px;
   font-weight: 600;
-  color: rgb(111, 115, 122);
+  color: ${({theme}) => theme.colorId};
 `;
 
 export const EmptyData = styled.div`

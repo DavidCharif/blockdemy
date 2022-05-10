@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ButtonStyled } from "../Styled/HeaderStyled";
 
 import {
   ButtonHistory,
@@ -11,7 +12,7 @@ import {
 } from "../Styled/HistoryStyled";
 
 const History = ({  setData, on }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const history = useSelector((state) => state.history);
   const navigate = useNavigate()
   const handleRandomCharacter = (data) => {
@@ -33,12 +34,12 @@ const History = ({  setData, on }) => {
   };
 
   return (
-    <>
-      <H2>History</H2>
-      <HistoryStyled>
-        <button onClick={() => handleOpen()}>
+
+      <>
+        <ButtonStyled onClick={() => handleOpen()}>
           {isOpen ? "Close" : "Open"}
-        </button>
+        </ButtonStyled>
+      <HistoryStyled>
         <HistoryInnerContainer className="default show">
           {history.map((item, index) => {
             return (
@@ -55,7 +56,8 @@ const History = ({  setData, on }) => {
           })}
         </HistoryInnerContainer>
       </HistoryStyled>
-    </>
+      </>
+    
   );
 };
 

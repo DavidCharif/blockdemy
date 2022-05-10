@@ -1,49 +1,40 @@
 import {
   DetailStyled,
   ButtonGenerateStyled,
-
   EmptyData,
 } from "../Styled/DetailStyled";
 import { GET_CHARACTER } from "../Querys/GET_CHARACTER";
 import { useState } from "react";
 import { randomNumber } from "../Helpers/randomNumber";
-import { useNavigate } from "react-router-dom";
 import InnerDetail from "../Helpers/innerDetail";
-
 import { graphql } from "@apollo/client/react/hoc";
 
-
-const Detail = ({dataApi,setOn , on}) => {
-  console.log('dataApi', dataApi)
-  console.log('on', on)
+const Detail = ({ dataApi, setOn, on }) => {
   const [data, setData] = useState(false);
-  
-
-  const navigate = useNavigate();
   const [idApi, setIdApi] = useState(randomNumber());
- 
   const query = graphql(GET_CHARACTER, {
     options: {
       variables: {
-        id:idApi,
+        id: idApi,
       },
-    }
-  })
+    },
+  });
 
-  const handleClick = () => {   
+  const handleClick = () => {
     setData(true);
-    setIdApi(randomNumber()); 
+    setIdApi(randomNumber());
     setOn(true);
   };
-  const Enhaced = query(InnerDetail)
-
+  const Enhaced = query(InnerDetail);
 
   return (
     <DetailStyled>
       {data ? (
-        
-        on ? <Enhaced/> : <InnerDetail data={dataApi}/>
-        
+        on ? (
+          <Enhaced />
+        ) : (
+          <InnerDetail data={dataApi} />
+        )
       ) : (
         <EmptyData>No se ha cargado ningún personaje</EmptyData>
       )}

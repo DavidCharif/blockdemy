@@ -2,24 +2,22 @@ import { BrowserRouter } from "react-router-dom";
 
 import LocalRoutes from "./Helpers/Routes";
 import { GoblalStyle } from "./Styled/GoblalStyle";
-import { configureStore } from "@reduxjs/toolkit";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./Styled/Theme";
+import { useSelector } from "react-redux";
 
-import counterReducer from "./Helpers/historySlice";
-import { Provider } from "react-redux";
-
-export const store = configureStore({
-  reducer: {
-    history: counterReducer,
-  },
-});
 function App() {
+  const localTheme = useSelector((state) => state.theme);
+
   return (
     <>
-      <GoblalStyle />
       <BrowserRouter>
-      <Provider store={store}>
-        <LocalRoutes />
-      </Provider>
+        <ThemeProvider
+          theme={localTheme === "light" ? theme.light : theme.dark}
+        >
+          <GoblalStyle />
+          <LocalRoutes />
+        </ThemeProvider>
       </BrowserRouter>
     </>
   );
