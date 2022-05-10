@@ -10,8 +10,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./Helpers/historySlice";
 import themeReducer from "./Helpers/themeSlice";
 
-
-
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql",
   cache: new InMemoryCache(),
@@ -26,11 +24,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-    <Provider store={store}>
-          
-      <App />
-      
-        </Provider>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ApolloProvider>
   </React.StrictMode>
 );
