@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 
 import App from "./App";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 
 import { configureStore } from "@reduxjs/toolkit";
 
